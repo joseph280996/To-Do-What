@@ -1,0 +1,13 @@
+package com.api.todolist.jpa;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import com.api.todolist.Task;
+
+public interface TaskJpaRepo extends JpaRepository <Task, Integer> {
+	@Query("select t from Task t where t.userId = ?1 order by t.date asc")
+	public List<Task> findAllByUserId(String userId);
+}
